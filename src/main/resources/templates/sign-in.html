@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5" name="description">
+    <meta content="AdminKit" name="author">
+    <meta content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"
+          name="keywords">
+
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="img/icons/icon-48x48.png" rel="shortcut icon"/>
+
+    <link href="https://demo-basic.adminkit.io/pages-sign-in.html" rel="canonical"/>
+
+    <title>Sign In | AdminKit Demo</title>
+
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<main class="d-flex w-100">
+    <div class="container d-flex flex-column">
+        <div class="row vh-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+
+                    <div class="text-center mt-4" th:if="${param.newCreated}">
+                        <h1 class="h2">Welcome</h1>
+                        <p class="lead">
+                            Sign in to your new created account to continue
+                        </p>
+                    </div>
+
+                    <div class="text-center mt-4" th:unless="${param.newCreated}">
+                        <h1 class="h2">Welcome back</h1>
+                        <p class="lead">
+                            Sign in to your account to continue
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-sm-4">
+                                <div class="text-center">
+                                    <img alt="Charles Hall" class="img-fluid rounded-circle"
+                                         height="132" src="/img/avatars/avatar.jpg" width="132"/>
+                                </div>
+                                <div class="text-center mt-4 text-danger" th:if="${param.error}">
+                                    <p class="ui-state-error-text">
+                                        Invalid authentication
+                                    </p>
+                                </div>
+                                <form th:action="@{/auth/sign-in}" method="post">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input class="form-control form-control-lg" name="username" placeholder="Enter your email"
+                                               type="email"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input class="form-control form-control-lg" name="password" placeholder="Enter your password"
+                                               type="password"/>
+                                        <small>
+                                            <a href="1index.html">Forgot password?</a>
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <label class="form-check">
+                                            <input checked class="form-check-input" name="remember-me"
+                                                   type="checkbox" value="remember-me">
+                                            <span class="form-check-label">Remember me next time</span>
+                                        </label>
+                                    </div>
+                                    <div class="text-center mt-3">
+<!--                                        <a class="btn btn-lg btn-primary" href="1index.html">Sign in</a>-->
+                                         <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>
