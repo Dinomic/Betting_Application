@@ -1,0 +1,16 @@
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/betting
+    password: postgres
+  flyway:
+    schemas: betting_schema
+    url: jdbc:postgresql://localhost:5432/betting
+    user: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        default_schema: betting_schema
