@@ -14,3 +14,17 @@ spring:
     properties:
       hibernate:
         default_schema: betting_schema
+
+logging:
+  pattern:
+    console: "%sn %d{yyyy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{3} %C{3}.%M(%F:%L) - %m%n"
+    file: "%sn %d{yyyy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{3} %C{3}.%M(%F:%L) - %m%n"
+  file:
+    name: /system_logs.log
+
+blockchain:
+  network:
+    url: http://192.168.56.101:8501
+  mainAccount:
+    address: "0x4f1809cf76a8946d615cb546271cae3ea36328ed"
+    privateKey: "0xbe4b83a3bff4fd9ec8b060e68fab18a2c0f78ac3943865931dcb73e6303dc48c"
