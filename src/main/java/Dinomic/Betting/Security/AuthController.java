@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/auth")
@@ -45,7 +45,7 @@ public class AuthController {
         account.setUsername(signUpForm.getUsername());
         account.setPassword(encodedPassword);
         account.setEmail(signUpForm.getEmail());
-        List<Authority> authorities = new ArrayList<>();
+        Set<Authority> authorities = new HashSet<>();
         Authority authority = new Authority();
         authority.setAccount(account);
         authorities.add(authority);

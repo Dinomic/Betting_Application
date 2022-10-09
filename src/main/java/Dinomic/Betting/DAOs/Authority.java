@@ -29,10 +29,6 @@ public class Authority {
         return authorityId;
     }
 
-    public void setAuthorityId(Long authorityId) {
-        this.authorityId = authorityId;
-    }
-
     public Role getName() {
         return name;
     }

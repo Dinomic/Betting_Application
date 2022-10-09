@@ -1,5 +1,6 @@
 package Dinomic.Betting.Services;
 
+import Dinomic.Betting.DAOs.Account;
 import Dinomic.Betting.Services.Interfaces.IBCService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,21 +16,24 @@ import org.web3j.protocol.Web3j;
 @Service
 public class BCService implements IBCService {
 
-    private static Logger LOG = LogManager.getLogger(BCService.class);
+    private static Logger LOGGER = LogManager.getLogger(BCService.class);
 
     @Autowired
     Web3j localWeb3j;
 
     @Override
-    public String createNewBCAccount(){
+    public void createNewWalletForAccount(Account account, String password) throws Exception {
+        if (Strings.isBlank(password)){
+            throw new Exception("Invalid password when creating Blockchain account!");
+        }
         try {
             ECKeyPair keyPair = Keys.createEcKeyPair();
-            WalletFile newWallet = Wallet.createLight("myPassword", keyPair);
+            WalletFile newWallet = Wallet.createLight(password, keyPair);
+
 
         } catch (Exception e) {
-            LOG.error("ERROR WHILE CREATE NEW WALLET");
+            LOGGER.error("ERROR WHILE CREATE NEW WALLET");
         }
 
-        return Strings.EMPTY;
     }
 }

@@ -27,10 +27,6 @@ public class AccountDetail {
         return accountDetailId;
     }
 
-    public void setAccountDetailId(Long accountDetailId) {
-        this.accountDetailId = accountDetailId;
-    }
-
     public String getPhone() {
         return phone;
     }

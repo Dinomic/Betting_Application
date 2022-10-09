@@ -39,9 +39,7 @@ public class BettingApplicationConfig {
             Web3j web3j = Web3j.build(new HttpService(bcUrl));
 //        checkConnectionSuccessfully(web3j);
 
-            LOG.info("Connected to Ethereum client version: "
-                    + web3j.web3ClientVersion().send().getWeb3ClientVersion());
-//            System.out.println("Connected to Ethereum client version: "
+//            LOG.info("Connected to Ethereum client version: "
 //                    + web3j.web3ClientVersion().send().getWeb3ClientVersion());
 
             return web3j;

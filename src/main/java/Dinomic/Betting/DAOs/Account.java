@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -32,30 +32,21 @@ public class Account {
     private Boolean isEnabled = true;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
-    private List<Authority> authorities;
+    private Set<Authority> authorities;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_DETAIL_ID")
     private AccountDetail accountDetail;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
+    private Set<Wallet> wallets;
+
     public Account(){
 
     }
 
-    public Account(Long accountId, String username, String password, Boolean isEnabled, List<Authority> authorities) {
-        this.accountId = accountId;
-        this.username = username;
-        this.password = password;
-        this.isEnabled = isEnabled;
-        this.authorities = authorities;
-    }
-
     public Long getAccountId() {
         return accountId;
-    }
-
-    public void setAccountId(Long id) {
-        this.accountId = id;
     }
 
     public String getUsername() {
@@ -95,7 +86,7 @@ public class Account {
                 .map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
     }
 
-    public void setAuthorities(List<Authority> authorities) {
+    public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
 
@@ -105,6 +96,14 @@ public class Account {
 
     public void setAccountDetail(AccountDetail accountDetail) {
         this.accountDetail = accountDetail;
+    }
+
+    public Set<Wallet> getWallets() {
+        return wallets;
+    }
+
+    public void setWallets(Set<Wallet> wallets) {
+        this.wallets = wallets;
     }
 }
 
