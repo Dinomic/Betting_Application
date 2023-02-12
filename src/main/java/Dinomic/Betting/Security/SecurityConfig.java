@@ -45,21 +45,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/bookie/**").hasRole("BOOKIE")
-                .antMatchers("/bettor/**").hasRole("BETTOR")
+            .antMatchers("/auth/**").permitAll()
+            .antMatchers("/public/**").permitAll()
+            .antMatchers("/bookie/**").hasRole("BOOKIE")
+            .antMatchers("/bettor/**").hasRole("BETTOR")
 //                // For any other request, you do not need a specific role but still need to be authenticated.
 //                .anyRequest().authenticated()
 //                .anyRequest().permitAll()
-                .and()
+            .and()
                 .formLogin()
                 .loginPage("/auth/sign-in")
+                .loginProcessingUrl("/auth/sign-in")
                 .successHandler(successHandler)
                 .permitAll()
-                .and()
-                .logout()
-                .permitAll();
-    }
+            .and()
+            .logout()
+            .permitAll();
+}
 
 
     @Override

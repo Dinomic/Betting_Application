@@ -28,7 +28,7 @@ public class AuthController {
     PasswordEncoder encoder;
 
     @GetMapping("/sign-up")
-    public String signUp(Model model){
+    public String signUpGet(Model model){
         model.addAttribute("signUpForm", new SignUpForm());
         return "sign-up";
     }
