@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,8 +39,9 @@ public class Account {
     @JoinColumn(name = "ACCOUNT_DETAIL_ID")
     private AccountDetail accountDetail;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
-    private Set<Wallet> wallets;
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
+            , mappedBy = "account", fetch = FetchType.LAZY)
+    private List<Wallet> wallets;
 
     public Account(){
 
@@ -98,11 +100,11 @@ public class Account {
         this.accountDetail = accountDetail;
     }
 
-    public Set<Wallet> getWallets() {
+    public List<Wallet> getWallets() {
         return wallets;
     }
 
-    public void setWallets(Set<Wallet> wallets) {
+    public void setWallets(List<Wallet> wallets) {
         this.wallets = wallets;
     }
 }

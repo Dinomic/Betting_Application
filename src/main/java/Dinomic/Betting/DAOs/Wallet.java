@@ -20,7 +20,8 @@ public class Wallet {
     @Column(name = "PRIVATE_KEY", nullable = false)
     private String privateKey;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name="ACCOUNT_ID", nullable=false)
     private Account account;
 
