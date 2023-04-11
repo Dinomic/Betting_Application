@@ -7,11 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.web3j.crypto.ECKeyPair;
-import org.web3j.crypto.Keys;
-import org.web3j.crypto.Wallet;
-import org.web3j.crypto.WalletFile;
+import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
+
+import java.io.File;
 
 @Service
 public class BCService implements IBCService {
@@ -27,9 +26,12 @@ public class BCService implements IBCService {
             throw new Exception("Invalid password when creating Blockchain account!");
         }
         try {
-            ECKeyPair keyPair = Keys.createEcKeyPair();
-            WalletFile newWallet = Wallet.createLight(password, keyPair);
 
+            String fileName = WalletUtils.generateFullNewWalletFile(password, new File("/wallets"));
+//
+//            ECKeyPair keyPair = Keys.createEcKeyPair();
+//            WalletFile newWallet = Wallet.createLight(password, keyPair);
+//
 
         } catch (Exception e) {
             LOGGER.error("ERROR WHILE CREATE NEW WALLET");

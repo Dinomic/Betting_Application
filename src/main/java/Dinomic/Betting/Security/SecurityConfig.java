@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/auth/**").permitAll()
             .antMatchers("/public/**").permitAll()
+            .antMatchers("/profile/**").authenticated()
             .antMatchers("/bookie/**").hasRole("BOOKIE")
             .antMatchers("/bettor/**").hasRole("BETTOR")
 //                // For any other request, you do not need a specific role but still need to be authenticated.
@@ -61,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .logout()
             .permitAll();
-}
+    }
 
 
     @Override
